@@ -17,7 +17,7 @@ const hex = "0123456789abcdef";
 function token(seed: number) {
   const r = rng(seed * 7919);
   let out = "";
-  for (let i = 0; i < 32; i++) out += hex[Math.floor(r() * 16)];
+  for (let i = 0; i < 32; i++) out += hex[Math.floor(r() * 16)]!;
   return out;
 }
 
