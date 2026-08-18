@@ -93,37 +93,24 @@ function EvaluationPage() {
             <h3 className="panel-title">Per-class AP</h3>
             <ScopeBadge scope="eval-subset" />
           </div>
-          <div className="mt-2 h-[280px]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData} layout="vertical" margin={{ left: 40 }}>
-                <CartesianGrid horizontal={false} stroke="#2c353f" />
-                <XAxis
-                  type="number"
-                  domain={[0, 1]}
-                  stroke="#8a98a6"
-                  tick={{ fontSize: 10, fontFamily: "IBM Plex Mono" }}
-                />
-                <YAxis
-                  type="category"
-                  dataKey="cls"
-                  width={120}
-                  stroke="#8a98a6"
-                  tick={{ fontSize: 10, fontFamily: "IBM Plex Mono" }}
-                />
-                <Tooltip
-                  cursor={{ fill: "#1f262e" }}
-                  contentStyle={{
-                    background: "#1f262e",
-                    border: "1px solid #2c353f",
-                    borderRadius: 4,
-                    fontSize: 11,
-                  }}
-                  formatter={(v: number) => [`${v} · EVAL SUBSET · MOCK`, "AP"]}
-                />
-                <Bar dataKey="ap" fill="#ffb454" barSize={10} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          <ul className="mt-2 space-y-1">
+            {chartData.map((c) => (
+              <li key={c.cls} className="flex items-center gap-2">
+                <span className="w-32 shrink-0 truncate text-muted-foreground">{c.cls}</span>
+                <span className="h-2.5 flex-1 bg-raised">
+                  <span
+                    className="block h-full bg-fusion"
+                    style={{ width: `${Math.round(c.ap * 100)}%` }}
+                    title={`AP ${c.ap} · EVAL SUBSET`}
+                  />
+                </span>
+                <span className="mono-num w-12 text-right text-[11px]">{c.ap.toFixed(3)}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-[11px] text-muted-foreground">
+            AP at the protocol's centre-distance thresholds, averaged over the subset.
+          </p>
         </Panel>
 
         <div className="space-y-3">
