@@ -133,7 +133,7 @@ function NewRunPage() {
                     <td className="py-1.5 pr-3">{s.sceneName}</td>
                     <td className="mono-num py-1.5 pr-3">{s.frameIndex}</td>
                     <td className="py-1.5 pr-3">{s.weather}</td>
-                    <td className="py-1.5 pr-3">{s.timeOfDay}</td>
+                    <td className="py-1.5 pr-3 text-muted-foreground">{s.privacyStatus}</td>
                     <td
                       className={cn(
                         "mono-num py-1.5 pr-3",
@@ -241,7 +241,7 @@ function NewRunPage() {
               ["Scene", sample.sceneName],
               ["Frame", String(sample.frameIndex)],
               ["Sample token", sample.sampleToken],
-              ["Conditions", `${sample.weather}, ${sample.timeOfDay}`],
+              ["Conditions", sample.weather],
               ["Checkpoint", checkpoint.label],
               ["Sensors", "camera + LiDAR"],
               ["Task head", taskHead === "occupancy" ? "occupancy" : "bev_segmentation"],
