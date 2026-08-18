@@ -37,8 +37,8 @@ function HistoryPage() {
           />
         ) : (
           <ol className="relative ml-2 border-l border-hairline">
-            {events.map((e) => (
-              <li key={e.id} className="relative py-3 pl-5">
+            {events.map((e, i) => (
+              <li key={`${e.at}-${i}`} className="relative py-3 pl-5">
                 <span className="absolute -left-[4.5px] top-[18px] size-2 rounded-full bg-fusion" />
                 <div className="flex flex-wrap items-center gap-2">
                   {e.from ? (
