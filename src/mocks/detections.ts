@@ -45,11 +45,11 @@ export function buildDetections(seed: number, withGt: boolean): Detection[] {
   const count = 15 + Math.floor(r() * 16);
   const out: Detection[] = [];
   for (let i = 0; i < count; i++) {
-    const cls = CLASSES[Math.floor(r() * CLASSES.length)];
+    const cls = CLASSES[Math.floor(r() * CLASSES.length)]!;
     const x = (r() * 2 - 1) * 46;
     const y = (r() * 2 - 1) * 24;
     const yaw = (r() * 2 - 1) * Math.PI;
-    const [l, w, h] = SIZE[cls];
+    const [l, w, h] = SIZE[cls] as [number, number, number];
     const distanceM = Math.sqrt(x * x + y * y);
     const score = Math.min(0.99, 0.22 + r() * 0.76);
     const cam = cameraFor(x, y);
