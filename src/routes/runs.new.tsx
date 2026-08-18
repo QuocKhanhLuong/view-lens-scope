@@ -105,7 +105,7 @@ function NewRunPage() {
             <table className="w-full text-left">
               <thead className="sticky top-0 bg-panel">
                 <tr className="border-b border-hairline">
-                  {["", "Scene", "Frame", "Weather", "Time", "Sync skew", "Ground truth"].map((h) => (
+                  {["", "Scene", "Frame", "Weather", "Privacy", "Sync skew", "Ground truth"].map((h) => (
                     <th key={h} className="panel-title py-1.5 pr-3 font-medium">
                       {h}
                     </th>
