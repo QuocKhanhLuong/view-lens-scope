@@ -33,8 +33,8 @@ export function EmptyState({
   action,
 }: {
   title: string;
-  hint?: string;
-  action?: ReactNode;
+  hint?: string | undefined;
+  action?: ReactNode | undefined;
 }) {
   return (
     <div className="flex h-full min-h-24 flex-col items-center justify-center gap-2 p-6 text-center">
