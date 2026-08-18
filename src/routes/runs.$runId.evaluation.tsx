@@ -1,5 +1,4 @@
 import { createFileRoute, useParams } from "@tanstack/react-router";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useAppStore } from "@/state/app-store";
 import { Panel, EmptyState } from "@/components/Panel";
 import { Metric, ScopeBadge } from "@/components/Metric";
