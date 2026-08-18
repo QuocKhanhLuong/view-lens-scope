@@ -71,9 +71,9 @@ export interface Detection {
   size: { l: number; w: number; h: number };
   yaw: number;
   distanceM: number;
-  iou?: number;
+  iou?: number | undefined;
   visibleIn: CameraName[];
-  bbox2d?: Partial<Record<CameraName, { x: number; y: number; w: number; h: number }>>;
+  bbox2d?: Partial<Record<CameraName, { x: number; y: number; w: number; h: number }>> | undefined;
 }
 
 export interface Timings {
@@ -102,7 +102,7 @@ export interface ReviewEvent {
   actorName: string;
   from: RunStatus;
   to: RunStatus;
-  comment?: string;
+  comment?: string | undefined;
 }
 
 export interface DenseOutput {
@@ -128,7 +128,7 @@ export interface Run {
   frameStats: { objectCount: number; meanConfidence: number; gtObjectCount: number };
   reviewHistory: ReviewEvent[];
   syncOk: boolean;
-  failureReason?: string;
+  failureReason?: string | undefined;
 }
 
 export interface EvaluationReport {
