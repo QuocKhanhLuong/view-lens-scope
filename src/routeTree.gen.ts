@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SystemRouteImport } from './routes/system'
 import { Route as RunsRunIdRouteImport } from './routes/runs.$runId'
 import { Route as RunsRunIdIndexRouteImport } from './routes/runs.$runId.index'
+import { Route as RunsRunIdEvaluationRouteImport } from './routes/runs.$runId.evaluation'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,16 +35,23 @@ const RunsRunIdIndexRoute = RunsRunIdIndexRouteImport.update({
   path: '/',
   getParentRoute: () => RunsRunIdRoute,
 } as any)
+const RunsRunIdEvaluationRoute = RunsRunIdEvaluationRouteImport.update({
+  id: '/evaluation',
+  path: '/evaluation',
+  getParentRoute: () => RunsRunIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/system': typeof SystemRoute
   '/runs/$runId': typeof RunsRunIdRouteWithChildren
+  '/runs/$runId/evaluation': typeof RunsRunIdEvaluationRoute
   '/runs/$runId/': typeof RunsRunIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/system': typeof SystemRoute
+  '/runs/$runId/evaluation': typeof RunsRunIdEvaluationRoute
   '/runs/$runId': typeof RunsRunIdIndexRoute
 }
 export interface FileRoutesById {
@@ -51,14 +59,26 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/system': typeof SystemRoute
   '/runs/$runId': typeof RunsRunIdRouteWithChildren
+  '/runs/$runId/evaluation': typeof RunsRunIdEvaluationRoute
   '/runs/$runId/': typeof RunsRunIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/system' | '/runs/$runId' | '/runs/$runId/'
+  fullPaths:
+    | '/'
+    | '/system'
+    | '/runs/$runId'
+    | '/runs/$runId/evaluation'
+    | '/runs/$runId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/system' | '/runs/$runId'
-  id: '__root__' | '/' | '/system' | '/runs/$runId' | '/runs/$runId/'
+  to: '/' | '/system' | '/runs/$runId/evaluation' | '/runs/$runId'
+  id:
+    | '__root__'
+    | '/'
+    | '/system'
+    | '/runs/$runId'
+    | '/runs/$runId/evaluation'
+    | '/runs/$runId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,14 +117,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RunsRunIdIndexRouteImport
       parentRoute: typeof RunsRunIdRoute
     }
+    '/runs/$runId/evaluation': {
+      id: '/runs/$runId/evaluation'
+      path: '/evaluation'
+      fullPath: '/runs/$runId/evaluation'
+      preLoaderRoute: typeof RunsRunIdEvaluationRouteImport
+      parentRoute: typeof RunsRunIdRoute
+    }
   }
 }
 
 interface RunsRunIdRouteChildren {
+  RunsRunIdEvaluationRoute: typeof RunsRunIdEvaluationRoute
   RunsRunIdIndexRoute: typeof RunsRunIdIndexRoute
 }
 
 const RunsRunIdRouteChildren: RunsRunIdRouteChildren = {
+  RunsRunIdEvaluationRoute: RunsRunIdEvaluationRoute,
   RunsRunIdIndexRoute: RunsRunIdIndexRoute,
 }
 
